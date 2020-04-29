@@ -1,0 +1,7 @@
+numpy==1.14.6
+scipy==1.2.1
+pandas
+matplotlib
+pyspark
+koalas
+surprise
