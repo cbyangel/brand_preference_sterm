@@ -1,4 +1,4 @@
-FROM registry.gslook.com/kube-ops/docker-images/all-spark-with-koalas:latest
+FROM ***.***.com/kube-ops/docker-images/all-spark-with-koalas:latest
 USER root
 ENV YEONDYS_USER_HOME /home/yeondys
 

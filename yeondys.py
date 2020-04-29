@@ -26,9 +26,9 @@ def define_argparser():
 
 def get_source_data(date_list):
 	sql = """ 
-        with a as ( select cast(dt as string) as dt, cast(pcid as string) as userid, cast(itemid as string) as itemid, staytime from gsshop.user_item_view where dt in {date_list}),
-         b as (select cast(a.pcid as string) as cust_no from gsshop.user_pcid_map a left join (select cast(cust_no as string) as cust_no, cast(ec_cust_grd_cd as string) as ec_cust_grd_cd from gsshop.vip_user_info) b on a.userid = b.cust_no where b.ec_cust_grd_cd is not null),
-         c as (select distinct cast(prd_id as string) as prd_cd, cast(brd_id as string) as brand_cd from gsshop.product where deal_flag = 'N' ) 
+        with a as ( select cast(dt as string) as dt, cast(pcid as string) as userid, cast(itemid as string) as itemid, staytime from user_item_view where dt in {date_list}),
+         b as (select cast(a.pcid as string) as cust_no from user_pcid_map a left join (select cast(cust_no as string) as cust_no, cast(ec_cust_grd_cd as string) as ec_cust_grd_cd from vip_user_info) b on a.userid = b.cust_no where b.ec_cust_grd_cd is not null),
+         c as (select distinct cast(prd_id as string) as prd_cd, cast(brd_id as string) as brand_cd from product where deal_flag = 'N' ) 
          select a.dt, a.userid, c.brand_cd, a.staytime from a left join b on a.userid = b.cust_no left join c on a.itemid = c.prd_cd where b.cust_no is not null and c.prd_cd is not null
          """.format(date_list=date_list)
 
@@ -40,7 +40,7 @@ def get_source_data(date_list):
 
 
 def get_toddler_data():
-	sql = """ select distinct brd_id from gsshop.dealteminfo where cate1 in ('1378777', '1378789', '1378783', '1403692', '1378778', '1378790', '1378802')   """
+	sql = """ select distinct brd_id from dealteminfo where cate1 in ('1378777', '1378789', '1378783', '1403692', '1378778', '1378790', '1378802')   """
 
 	print("execute sql : {}".format(sql))
 	return sql
