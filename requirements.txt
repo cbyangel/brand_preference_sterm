@@ -1,5 +1,5 @@
 numpy==1.14.6
-scipy==1.2.1
+scipy==1.10.0
 pandas
 matplotlib
 pyspark
